@@ -8,16 +8,21 @@
 # also, they still provide IA-32 builds for some reason...
 # some people in the AppImage community do not (want to) realize i386 is dead for good
 # we are going to drop i686 in the future!
-FROM debian:stable
+ARG BASE_IMAGE=debian:stable
+FROM ${BASE_IMAGE}
 
 # variables that need to be availabe during build and runtime must(!) be repeated after FROM
 ARG ARCH
+
+ENV BUILD_ARCH=${ARCH}
 
 ENV APPIMAGE_EXTRACT_AND_RUN=1
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
+        libbison-dev \
+        bison \
         file \
         xz-utils \
         wget \

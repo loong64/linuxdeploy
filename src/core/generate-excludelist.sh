@@ -17,7 +17,7 @@ tempfile=$(mktemp -t linuxdeploy-excludelist.h-XXXXXX)
 log_prefix="-- [$(basename $0)]"
 
 echo "$log_prefix downloading excludelist from GitHub"
-url="https://raw.githubusercontent.com/probonopd/AppImages/master/excludelist"
+url="https://raw.githubusercontent.com/loong64/pkg2appimage/refs/heads/master/excludelist"
 blacklisted=($(wget --quiet "$url" -O - | sed 's|#.*||g' | sort | uniq))
 
 # sanity check
@@ -37,7 +37,7 @@ cat > "$tempfile" <<\EOF
  * List of libraries to exclude for different reasons.
  *
  * Automatically generated from
- * https://raw.githubusercontent.com/probonopd/AppImages/master/excludelist
+ * https://raw.githubusercontent.com/loong64/pkg2appimage/refs/heads/master/excludelist
  *
  * This file shall be committed by the developers occassionally,
  * otherwise systems without access to the internet won't be able to build
